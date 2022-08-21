@@ -44,7 +44,7 @@ function onSubmitSearch(evt) {
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
 
         if (data.totalHits > perPage) {
-          console.log(data.totalHits);
+          // console.log(data.totalHits);
           btnLoadMore.classList.remove('is-hidden');
         }
       }
@@ -62,9 +62,9 @@ function onBtnLoadMore() {
     .then(({ data }) => {
       renderGallery(data.hits);
       simpleLightBox = new SimpleLightbox('.gallery a').refresh();
-
-      const totalPages = Math.ceil(data.totalHits / perPage);
-
+      const totalPages = data.totalHits / perPage;
+      // console.log(page);
+      // console.log(perPage);
       if (page > totalPages) {
         btnLoadMore.classList.add('is-hidden');
         Notiflix.Notify.failure(
